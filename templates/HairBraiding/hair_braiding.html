@@ -1,7 +1,39 @@
-{% extends "main.html" %}
+{% extends 'services/base.html' %}
 
-{% block title %}Hair Braiding Services{% endblock title %}
+{% block title %}Hair Braiding Services{% endblock %}
 
-{% block content %}{% endblock content %}
+{% block content %}
+    <h1 class="text-4xl font-bold text-center mb-8">Hair Braiding Services</h1>
+    <p class="text-lg text-center mb-8">Welcome to our Hair Braiding services! We offer a variety of braiding styles to suit your needs.</p>
 
-grid cards for image and description
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Our Services</h2>
+        <ul class="space-y-4">
+            {% for service in services %}
+            <li class="p-4 bg-white shadow rounded-lg">
+                <h3 class="text-xl font-semibold">{{ service.name }}</h3>
+                <p class="text-gray-700">{{ service.description }}</p>
+                <p class="text-gray-900 font-bold">Price: ${{ service.price }}</p>
+                {% if service.image %}
+                <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-full mt-4 rounded">
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Why Choose Us?</h2>
+        <p class="text-gray-700">We have a team of experienced braiders who are skilled in various braiding techniques. Our services are affordable, and we prioritize the health of your hair.</p>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-semibold mb-4">Gallery</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Example of how you can display images -->
+            <img src="{% static 'services/images/box_braids.jpg' %}" alt="Box Braids" class="w-full h-64 object-cover rounded">
+            <img src="{% static 'services/images/cornrows.jpg' %}" alt="Cornrows" class="w-full h-64 object-cover rounded">
+            <img src="{% static 'services/images/senegalese_twists.jpg' %}" alt="Senegalese Twists" class="w-full h-64 object-cover rounded">
+        </div>
+    </section>
+{% endblock %}
